@@ -116,7 +116,9 @@ function Register() {
                 }
             })
             .catch((err) => {
-                console.log(err);
+                if (err.status == 400) {
+                    alert("You alredy have account! Login please");
+                }
             });
     }
     return (
