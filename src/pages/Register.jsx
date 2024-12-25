@@ -14,8 +14,81 @@ function Register() {
     const [per, setPer] = useState(false);
     const navigate = useNavigate();
 
+    function validate() {
+        if (username === "") {
+            toast.error("Username is not valid", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return false;
+        }
+        if (!email.includes("@")) {
+            toast.error("Email is not valid", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return false;
+        }
+        if (password === "") {
+            toast.error("Password is not valid!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return false;
+        }
+        if (rePassword === "") {
+            toast.error("RePassword is not valid", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return false;
+        }
+        if (password !== rePassword) {
+            toast.error("Password is not same!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return false;
+        }
+        return true;
+    }
     function handleReg(e) {
         e.preventDefault();
+        const isValid = validate();
+        if (!isValid) {
+            setPer(false);
+            return;
+        }
         const data = {
             username,
             email,

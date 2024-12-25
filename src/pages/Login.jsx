@@ -13,8 +13,43 @@ function Login() {
     const [load, setLoad] = useState(false);
     const navigate = useNavigate();
 
+    function validate() {
+        if (username === "") {
+            toast.error("username is not valid!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return false;
+        }
+        if (password === "") {
+            toast.error("Password is not valid", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return false;
+        }
+        return true;
+    }
+
     function handleReg(e) {
         setLoad(true);
+        const isValid = validate();
+        if (!isValid) {
+            setLoad(false);
+            return;
+        }
         e.preventDefault();
         const data = {
             username,
@@ -84,6 +119,7 @@ function Login() {
                 <div className="flex flex-col justify-center w-[400px]">
                     <h1 className="text-[40px] text-center mb-5">Login</h1>
                     <input
+                        disabled={load}
                         value={username}
                         onChange={(e) => {
                             setUsername(e.target.value);
@@ -95,6 +131,7 @@ function Login() {
 
                     <div className="flex items-center p-2 mb-3 border-2 border-blue-400 rounded-md">
                         <input
+                            disabled={load}
                             value={password}
                             onChange={(e) => {
                                 setPassword(e.target.value);
