@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { ToastContainer } from "react-toastify";
 import Counter from "./pages/Counter";
+import Acccount from "./pages/Acccount";
 
 function App() {
     const [token, setToken] = useState(
@@ -48,6 +49,16 @@ function App() {
                     }
                 ></Route>
                 <Route
+                    path="/account"
+                    element={
+                        <PrivateRoute isAuth={!!token}>
+                            <MainLayout>
+                                <Acccount></Acccount>
+                            </MainLayout>
+                        </PrivateRoute>
+                    }
+                ></Route>
+                <Route
                     path="/products"
                     element={
                         <PrivateRoute isAuth={!!token}>
@@ -73,11 +84,16 @@ function App() {
                         </AuthLayout>
                     }
                 ></Route>
-                <Route path='/counter' element={<PrivateRoute isAuth={!!token}>
-                    <MainLayout>
-                        <Counter></Counter>
-                    </MainLayout>
-                </PrivateRoute>}></Route>
+                <Route
+                    path="/counter"
+                    element={
+                        <PrivateRoute isAuth={!!token}>
+                            <MainLayout>
+                                <Counter></Counter>
+                            </MainLayout>
+                        </PrivateRoute>
+                    }
+                ></Route>
             </Routes>
             <ToastContainer />
         </div>

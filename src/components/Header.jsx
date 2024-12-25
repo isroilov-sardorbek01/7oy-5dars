@@ -34,7 +34,7 @@ function Header() {
                         }
                         to="/products"
                     >
-                       Bozor
+                        Bozor
                     </NavLink>
                     <NavLink
                         className={({ isActive }) =>
@@ -43,6 +43,14 @@ function Header() {
                         to="/counter"
                     >
                         CounterRedux
+                    </NavLink>
+                    <NavLink
+                        className={({ isActive }) =>
+                            isActive ? "active" : "nonactive"
+                        }
+                        to="/account"
+                    >
+                        Account
                     </NavLink>
                 </ul>
                 <div
