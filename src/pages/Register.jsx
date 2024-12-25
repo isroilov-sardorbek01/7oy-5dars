@@ -116,9 +116,7 @@ function Register() {
                 }
             })
             .catch((err) => {
-                if (err.status == 400) {
-                    console.log("shdfkjshfdd");
-                }
+                console.log(err);
             });
     }
     return (
